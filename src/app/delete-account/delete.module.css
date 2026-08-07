@@ -1,0 +1,40 @@
+.section {
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.layout {
+  display: grid;
+  gap: 1rem;
+  max-width: 820px;
+}
+
+.card {
+  padding: 1.35rem 1.3rem 1.5rem;
+}
+
+.card h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+}
+
+.card ul,
+.steps {
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.card a {
+  color: var(--teal);
+}
+
+.note {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.actions {
+  margin-top: 1.25rem;
+}

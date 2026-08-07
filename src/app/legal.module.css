@@ -1,0 +1,11 @@
+.section {
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.doc {
+  max-width: 780px;
+}
+
+.doc a {
+  color: var(--teal);
+}

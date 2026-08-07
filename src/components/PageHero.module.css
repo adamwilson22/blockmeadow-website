@@ -1,0 +1,33 @@
+.wrap {
+  position: relative;
+  padding: clamp(2rem, 4.5vw, 3.4rem) 0 0.35rem;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  inset: -20% 40% auto -10%;
+  height: 220px;
+  background: radial-gradient(ellipse at center, rgba(45, 212, 191, 0.14), transparent 70%);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+}
+
+.wrap h1 {
+  margin: 0.65rem 0 0.9rem;
+  max-width: 14ch;
+}
+
+.wrap .lead {
+  max-width: 40rem;
+}
+
+.rule {
+  margin-top: 1.35rem;
+  width: min(100%, 220px);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(45, 212, 191, 0.55), rgba(245, 197, 66, 0.35), transparent);
+}

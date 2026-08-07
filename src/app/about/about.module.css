@@ -1,0 +1,30 @@
+.wrap {
+  display: grid;
+  gap: 1rem;
+  max-width: 820px;
+  padding-top: 0.25rem;
+}
+
+.section {
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.card {
+  padding: 1.4rem 1.35rem 1.5rem;
+}
+
+.card h2 {
+  margin-bottom: 0.65rem;
+  font-size: 1.35rem;
+}
+
+.card a {
+  color: var(--teal);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+}
