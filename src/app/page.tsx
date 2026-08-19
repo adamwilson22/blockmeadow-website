@@ -107,8 +107,8 @@ const homeFaqs = [
     a: 'No for core puzzle gameplay. Ads, purchases, and cloud leaderboard features need a connection when you use them.',
   },
   {
-    q: 'When does it launch?',
-    a: 'We’re finishing the production release. This page will update with the official Play Store link the moment it goes live.',
+    q: 'Where can I download it?',
+    a: 'Block Meadow is on Google Play for Android. Search Block Meadow or use the Play Store button on this site.',
   },
 ];
 
@@ -129,7 +129,7 @@ export default function HomePage() {
         <div className={styles.heroShade} aria-hidden />
         <div className={`container ${styles.heroContent}`}>
           <div className="fade-up">
-            <span className="badge">Coming soon on Google Play</span>
+            <span className="badge">On Google Play</span>
             <Image
               src="/brand/logo_wordmark.png"
               alt={site.name}
@@ -143,8 +143,8 @@ export default function HomePage() {
               challenges. Offline-first. Premium feel.
             </p>
             <div className={styles.actions}>
-              <a href="#play" className="btn btn-primary">
-                Get launch updates
+              <a href={site.playStoreUrl} className="btn btn-primary">
+                Get it on Google Play
               </a>
               <a href="#modes" className="btn btn-secondary">
                 See how it plays
@@ -336,16 +336,16 @@ export default function HomePage() {
           <div className={styles.ctaBand}>
             <div>
               <p className="eyebrow">Google Play</p>
-              <h2>Launching soon on Android</h2>
+              <h2>Play on Android</h2>
               <p>
-                We&apos;re polishing the release build. Bookmark this page for the official download link, or
-                email <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a> for press and support.
+                Download Block Meadow on Google Play. For press, privacy, or account help, email{' '}
+                <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>.
               </p>
             </div>
             <div className={styles.actions}>
-              <span className="btn btn-secondary" aria-disabled="true">
-                Coming soon
-              </span>
+              <a href={site.playStoreUrl} className="btn btn-primary">
+                Open Google Play
+              </a>
               <Link href="/about" className="btn btn-ghost">
                 About Block Meadow
               </Link>

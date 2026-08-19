@@ -66,9 +66,9 @@ export function Header() {
                 );
               })}
             </div>
-            <Link href="/#play" className={`btn btn-primary ${styles.cta}`}>
+            <a href={site.playStoreUrl} className={`btn btn-primary ${styles.cta}`}>
               Get the game
-            </Link>
+            </a>
           </nav>
 
           <button
@@ -104,9 +104,13 @@ export function Header() {
               </Link>
             );
           })}
-          <Link href="/#play" className={`btn btn-primary ${styles.mobileCta}`} onClick={() => setOpen(false)}>
+          <a
+            href={site.playStoreUrl}
+            className={`btn btn-primary ${styles.mobileCta}`}
+            onClick={() => setOpen(false)}
+          >
             Get the game
-          </Link>
+          </a>
         </nav>
       </div>
       {open ? <button className={styles.backdrop} aria-label="Close menu" onClick={() => setOpen(false)} /> : null}

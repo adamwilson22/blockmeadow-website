@@ -31,6 +31,7 @@ const groups = [
     title: 'Progression',
     items: [
       ['Global leaderboard', 'Compete with anonymous name + country after setup.'],
+      ['Friends (13+)', 'Username search, My Squad, and beat-the-score challenges. Hidden in Kid Mode.'],
       ['Achievements', 'Milestones that reward mastery over time.'],
       ['Shop & VIP', 'Cosmetics, boosters, and optional ad-free comfort.'],
       ['Daily rewards', 'Come back for streaks, spins, and soft progression.'],

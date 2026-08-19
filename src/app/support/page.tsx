@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
-    q: 'When will Block Meadow be on Google Play?',
-    a: 'We are preparing the production release. This site will update with the official Play Store link when the listing goes live.',
+    q: 'Where do I download Block Meadow?',
+    a: 'On Google Play for Android (com.playblockmeadow.app). Use Get the game in the header, or search Block Meadow.',
   },
   {
     q: 'Does the game work offline?',
@@ -26,8 +26,8 @@ const faqs = [
     q: 'How do I delete my account / data?',
     a: (
       <>
-        Follow the steps on our <Link href="/delete-account">Delete Account</Link> page. Anonymous cloud
-        profiles and local progress can be removed on request.
+        Follow the steps on our <Link href="/delete-account">Delete Account</Link> page. Leaderboard,
+        username/friends data (13+), and local progress can be removed on request.
       </>
     ),
   },

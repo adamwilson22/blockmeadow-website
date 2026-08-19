@@ -8,7 +8,7 @@ This folder is gitignored from the Flutter app repo. Deploy it separately (recom
 
 | Path | Purpose |
 |------|---------|
-| `/` | Home + Coming soon Play CTA |
+| `/` | Home + Google Play CTA |
 | `/features` | Feature overview |
 | `/about` | About |
 | `/support` | Support + FAQ |
@@ -30,4 +30,4 @@ npm run build
 npm start
 ```
 
-Point the domain `playblockmeadow.com` at your host. After the Play listing is live, set `playStoreUrl` in `src/lib/site.ts`.
+Point the domain `playblockmeadow.com` at your host. `playStoreUrl` in `src/lib/site.ts` is the Play listing.

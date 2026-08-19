@@ -7,9 +7,10 @@ export const site = {
   tagline: 'Jewel block puzzle · play offline',
   description:
     'Block Meadow is a relaxing jewel block puzzle. Clear rows, build combos, conquer adventure levels, and play offline anytime.',
-  packageId: 'com.lumina.blocks',
-  playStoreUrl: null as string | null, // Coming soon — set when listing is live
-  updated: 'August 7, 2026',
+  packageId: 'com.playblockmeadow.app',
+  playStoreUrl:
+    'https://play.google.com/store/apps/details?id=com.playblockmeadow.app',
+  updated: 'August 19, 2026',
   social: {
     // Reserved for later
   },
