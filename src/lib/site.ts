@@ -11,6 +11,8 @@ export const site = {
   packageId: 'com.playblockmeadow.app',
   playStoreUrl:
     'https://play.google.com/store/apps/details?id=com.playblockmeadow.app',
+  /** Google Search Console HTML-tag token (public; also used as DNS TXT value). */
+  gscVerification: 'F4YrwtvEiaXDMEbqxcEhHEcV9YsNCO-97iIIp_sbqxU',
   updated: 'August 27, 2026',
   updatedIso: '2026-08-27',
   ogImage: {

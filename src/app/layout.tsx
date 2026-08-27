@@ -15,7 +15,7 @@ const sora = Sora({
   weight: ['400', '500', '600', '700', '800'],
 });
 
-const gsc = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
+const gsc = process.env.NEXT_PUBLIC_GSC_VERIFICATION || site.gscVerification;
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  ...(gsc ? { verification: { google: gsc } } : {}),
+  verification: { google: gsc },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
