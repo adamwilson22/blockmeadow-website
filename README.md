@@ -15,6 +15,7 @@ This folder is gitignored from the Flutter app repo. Deploy it separately (recom
 | `/privacy` | Privacy policy |
 | `/terms` | Terms of service |
 | `/delete-account` | Account / cloud data deletion (Play requirement) |
+| `/app-ads.txt` | AdMob authorized sellers (IAB app-ads.txt) |
 
 ## Local
 
