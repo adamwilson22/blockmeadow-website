@@ -1,6 +1,22 @@
 .wrap {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
+  flex-direction: column;
+  gap: 0.7rem;
+  width: 100%;
+  margin-top: 1.35rem;
+}
+
+.wrap :global(.btn) {
+  width: 100%;
+  text-decoration: none;
+}
+
+.wrap :global(.btn-primary) {
+  color: #041512;
+}
+
+.wrap :global(.btn-ghost) {
+  color: var(--text);
+  background: rgba(15, 23, 36, 0.55);
+  border-color: rgba(45, 212, 191, 0.35);
 }

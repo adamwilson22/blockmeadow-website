@@ -45,8 +45,7 @@ export function OpenAppGate(props: Props) {
     window.location.href = intent;
   }, [intent]);
 
-  const label =
-    props.kind === 'challenge' ? 'Open challenge in the app' : 'Open invite in the app';
+  const label = props.kind === 'challenge' ? 'Open in Block Meadow' : 'Open invite in the app';
 
   return (
     <div className={styles.wrap}>

@@ -1,14 +1,141 @@
+.stage {
+  position: relative;
+  padding: clamp(1.25rem, 4vw, 2.4rem) 0 clamp(2.5rem, 6vw, 4.5rem);
+  overflow: hidden;
+}
+
+.stage::before {
+  content: '';
+  position: absolute;
+  inset: -10% 20% auto;
+  height: 280px;
+  background: radial-gradient(ellipse at center, rgba(45, 212, 191, 0.16), transparent 70%);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.headline {
+  margin: 0.55rem 0 0.35rem;
+  max-width: 18ch;
+  font-size: clamp(1.85rem, 5vw, 2.75rem);
+}
+
+.lede {
+  max-width: 34ch;
+  margin: 0 0 1.5rem;
+  color: var(--text-secondary);
+}
+
+.card {
+  position: relative;
+  width: min(100%, 380px);
+  isolation: isolate;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(245, 197, 66, 0.28);
+  box-shadow:
+    0 0 0 1px rgba(45, 212, 191, 0.08),
+    0 24px 60px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.cardBg {
+  object-fit: cover;
+  opacity: 0.38;
+  filter: saturate(1.1);
+}
+
+.cardShade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(7, 11, 17, 0.55) 0%, rgba(7, 11, 17, 0.28) 42%, rgba(7, 11, 17, 0.88) 100%),
+    radial-gradient(420px 180px at 50% 18%, rgba(45, 212, 191, 0.22), transparent 70%);
+  pointer-events: none;
+}
+
+.cardInner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.35rem 1.25rem 1.3rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.brandIcon {
+  border-radius: 8px;
+}
+
+.mode {
+  margin-top: 1.35rem;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
 .score {
   font-variant-numeric: tabular-nums;
-  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  font-size: clamp(3.4rem, 14vw, 4.6rem);
   font-weight: 800;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.05em;
   color: var(--teal);
-  line-height: 1;
-  margin: 0.2rem 0 0.9rem;
+  line-height: 0.95;
+  margin: 0.15rem 0 0.7rem;
+  text-shadow: 0 0 28px rgba(45, 212, 191, 0.45);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(245, 197, 66, 0.55);
+  background: rgba(245, 197, 66, 0.14);
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
 }
 
 .handle {
-  color: var(--gold);
+  margin-top: 1.1rem;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1.02rem;
+}
+
+.taunt {
+  margin-top: 0.2rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
   font-weight: 600;
+}
+
+.inviteMark {
+  width: 72px;
+  height: 72px;
+  margin-top: 0.35rem;
+  border-radius: 22px;
+  object-fit: cover;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
 }

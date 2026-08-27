@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { OpenAppGate } from '@/components/OpenAppGate';
-import { PageHero } from '@/components/PageHero';
-import { site } from '@/lib/site';
-import m from '../../../marketing.module.css';
+import { screens, site } from '@/lib/site';
 import styles from '../../challenge.module.css';
 
 type Params = { user: string; score: string };
@@ -54,24 +53,45 @@ export default async function ChallengePage({
   const parsed = parseScore(score);
   if (!name || parsed == null) notFound();
 
+  const pretty = parsed.toLocaleString('en-US');
+
   return (
-    <>
-      <PageHero
-        eyebrow="Score challenge"
-        title={`Can you beat ${name}?`}
-        subtitle={`Classic score to beat. Opens Block Meadow if the app is installed.`}
-      />
-      <section className={`section ${m.tightSection}`}>
-        <div className={`container ${m.prose}`}>
-          <p className={styles.handle}>@{name}</p>
-          <p className={styles.score}>{parsed.toLocaleString('en-US')}</p>
-          <p>
-            {name} scored {parsed} in Classic. Tap below to open the same mode in Block Meadow, or
-            install the game first.
-          </p>
-          <OpenAppGate kind="challenge" user={name} score={parsed} />
-        </div>
-      </section>
-    </>
+    <section className={styles.stage}>
+      <div className={`container ${styles.inner}`}>
+        <p className="eyebrow">Score challenge</p>
+        <h1 className={styles.headline}>Can you beat {name}?</h1>
+        <p className={styles.lede}>Classic score to beat. Opens the app if it is installed.</p>
+
+        <article className={styles.card}>
+          <Image
+            src={screens.classic.src}
+            alt=""
+            fill
+            priority
+            sizes="380px"
+            className={styles.cardBg}
+          />
+          <div className={styles.cardShade} aria-hidden />
+          <div className={styles.cardInner}>
+            <div className={styles.brand}>
+              <Image
+                src="/brand/app_icon.png"
+                alt=""
+                width={28}
+                height={28}
+                className={styles.brandIcon}
+              />
+              {site.name}
+            </div>
+            <p className={styles.mode}>Classic score</p>
+            <p className={styles.score}>{pretty}</p>
+            <p className={styles.pill}>Best {pretty}</p>
+            <p className={styles.handle}>@{name}</p>
+            <p className={styles.taunt}>Can you beat me?</p>
+            <OpenAppGate kind="challenge" user={name} score={parsed} />
+          </div>
+        </article>
+      </div>
+    </section>
   );
 }
