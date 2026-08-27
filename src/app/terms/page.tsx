@@ -1,22 +1,34 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { JsonLd } from '@/components/JsonLd';
 import { PageHero } from '@/components/PageHero';
+import { breadcrumbJsonLd, graphJsonLd, pageMeta } from '@/lib/seo';
 import { site } from '@/lib/site';
 import styles from '../legal.module.css';
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: 'Terms of Service',
   description: 'Block Meadow terms of service — rules for playing, purchasing, and using social features.',
-};
+  path: '/terms',
+});
+
+const crumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Terms', href: '/terms' },
+];
 
 export default function TermsPage() {
   return (
     <>
+      <JsonLd data={graphJsonLd([breadcrumbJsonLd(crumbs)])} />
       <PageHero
         eyebrow="Legal"
         title="Terms of Service"
         subtitle={`Last updated: ${site.updated}. Please read these terms before using Block Meadow.`}
       />
+      <div className="container" style={{ paddingTop: '0.25rem' }}>
+        <Breadcrumbs items={crumbs} />
+      </div>
       <section className={`section ${styles.section}`}>
         <div className={`container legal-prose ${styles.doc}`}>
           <p>

@@ -29,8 +29,14 @@
 .logo {
   width: min(360px, 78vw);
   height: auto;
-  margin: 0.75rem 0 1.1rem;
+  margin: 0.75rem 0 0.35rem;
   filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.45));
+}
+
+.heroH1 {
+  margin: 0 0 0.85rem;
+  max-width: 16ch;
+  font-size: clamp(1.85rem, 4.2vw, 2.75rem);
 }
 
 .actions {
@@ -50,6 +56,9 @@
 }
 
 .modeCard {
+  display: block;
+  text-decoration: none;
+  color: inherit;
   padding: 1.35rem 1.3rem 1.45rem;
   min-height: 168px;
   position: relative;

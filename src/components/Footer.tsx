@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { legalLinks, navLinks, site } from '@/lib/site';
+import { guideLinks, legalLinks, playLinks, site } from '@/lib/site';
 import styles from './Footer.module.css';
 
 export function Footer() {
@@ -23,9 +23,18 @@ export function Footer() {
           </Link>
         </div>
 
-        <nav className={styles.col} aria-label="Explore">
-          <p className={styles.label}>Explore</p>
-          {navLinks.map((link) => (
+        <nav className={styles.col} aria-label="Play">
+          <p className={styles.label}>Play</p>
+          {playLinks.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <nav className={styles.col} aria-label="Guides">
+          <p className={styles.label}>Guides</p>
+          {guideLinks.map((link) => (
             <Link key={link.href} href={link.href}>
               {link.label}
             </Link>

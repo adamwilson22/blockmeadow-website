@@ -1,0 +1,41 @@
+.crumbs {
+  padding-top: 0.25rem;
+}
+
+.prose {
+  max-width: 760px;
+}
+
+.prose h2 {
+  margin: 2.1rem 0 0.75rem;
+  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+}
+
+.prose p + p {
+  margin-top: 0.9rem;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0.85rem 0 0;
+  padding-left: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.prose li + li {
+  margin-top: 0.4rem;
+}
+
+.prose a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.shots {
+  margin: 2rem 0 0;
+}
+
+.tightSection {
+  padding-top: clamp(1.35rem, 3vw, 2.1rem);
+}

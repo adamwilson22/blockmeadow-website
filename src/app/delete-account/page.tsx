@@ -1,13 +1,21 @@
-import type { Metadata } from 'next';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { JsonLd } from '@/components/JsonLd';
 import { PageHero } from '@/components/PageHero';
+import { breadcrumbJsonLd, graphJsonLd, pageMeta } from '@/lib/seo';
 import { site } from '@/lib/site';
 import styles from './delete.module.css';
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: 'Delete Account',
   description:
     'How to delete your Block Meadow account, leaderboard profile, friends data, and local progress.',
-};
+  path: '/delete-account',
+});
+
+const crumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Delete Account', href: '/delete-account' },
+];
 
 export default function DeleteAccountPage() {
   const mailHref = `mailto:${site.supportEmail}?subject=${encodeURIComponent(
@@ -18,11 +26,15 @@ export default function DeleteAccountPage() {
 
   return (
     <>
+      <JsonLd data={graphJsonLd([breadcrumbJsonLd(crumbs)])} />
       <PageHero
         eyebrow="Account"
         title="Delete your account"
         subtitle="Request removal of Block Meadow cloud data (leaderboard, username, friends). Local progress can be cleared on your device."
       />
+      <div className="container" style={{ paddingTop: '0.25rem' }}>
+        <Breadcrumbs items={crumbs} />
+      </div>
       <section className={`section ${styles.section}`}>
         <div className={`container ${styles.layout}`}>
           <article className={`panel ${styles.card}`}>

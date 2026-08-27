@@ -1,25 +1,53 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { site } from '@/lib/site';
+import { FaqAccordion } from '@/components/FaqAccordion';
+import { JsonLd } from '@/components/JsonLd';
+import { PlayCtaBand } from '@/components/PlayCtaBand';
+import { ScreenshotGrid } from '@/components/ScreenshotGrid';
+import {
+  faqJsonLd,
+  graphJsonLd,
+  pageMeta,
+  softwareApplicationJsonLd,
+} from '@/lib/seo';
+import { screens, site, type FaqItem } from '@/lib/site';
 import styles from './page.module.css';
+
+export const metadata = pageMeta({
+  title: site.homeTitle,
+  description: site.description,
+  path: '/',
+  absoluteTitle: true,
+  keywords: [
+    'jewel block puzzle',
+    'block puzzle Android',
+    'offline block puzzle',
+    'gem block puzzle',
+    'Block Meadow',
+  ],
+});
 
 const modes = [
   {
+    href: '/classic',
     label: 'Classic',
     title: 'Endless high-score flow',
     body: 'Drop jewel blocks on an 8×8 board, clear rows and columns, and ride combo chains as far as you can.',
   },
   {
+    href: '/adventure',
     label: 'Adventure',
     title: '1,000 goal-driven levels',
     body: 'Clear lines, hit score targets, land combos, and shatter crystals through a long campaign built for mastery.',
   },
   {
+    href: '/daily',
     label: 'Daily',
     title: 'A fresh puzzle each day',
     body: 'One seeded challenge every day — perfect for a short, focused ritual that still feels new.',
   },
   {
+    href: '/blitz',
     label: 'Blitz',
     title: 'Timed pressure runs',
     body: 'Race the clock when you want sharper decisions, faster clears, and a different kind of score chase.',
@@ -97,29 +125,36 @@ const audiences = [
   },
 ];
 
-const homeFaqs = [
+const homeFaqs: FaqItem[] = [
   {
     q: 'Is Block Meadow free?',
-    a: 'Yes — the game will be free to download on Google Play, with optional in-app purchases for cosmetics, boosters, and VIP comfort.',
+    a: 'Yes. Block Meadow is free to download on Google Play. Optional in-app purchases cover cosmetics, boosters, Remove Ads, and VIP. You can play the full jewel block puzzle without paying.',
   },
   {
     q: 'Do I need an internet connection?',
-    a: 'No for core puzzle gameplay. Ads, purchases, and cloud leaderboard features need a connection when you use them.',
+    a: 'No for core puzzle gameplay on the 8×8 board. Ads, purchases, and the cloud leaderboard need a connection when you use them. See the offline play page for details.',
   },
   {
     q: 'Where can I download it?',
-    a: 'Block Meadow is on Google Play for Android. Search Block Meadow or use the Play Store button on this site.',
+    a: 'Block Meadow is on Google Play for Android (com.playblockmeadow.app). Search Block Meadow or use Get it on Google Play on this site.',
+  },
+  {
+    q: 'Is it safe for children?',
+    a: 'Yes. A one-time age gate routes under-13 players into Kid Mode: no friends, no username search, child-directed ads, and a sticker album instead of social features.',
   },
 ];
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd
+        data={graphJsonLd([softwareApplicationJsonLd(), faqJsonLd(homeFaqs)])}
+      />
       <section className={styles.hero}>
-        <div className={styles.heroMedia} aria-hidden>
+        <div className={styles.heroMedia}>
           <Image
             src="/brand/splash_screen.png"
-            alt=""
+            alt="Block Meadow jewel block puzzle board on Android"
             fill
             priority
             sizes="100vw"
@@ -132,23 +167,24 @@ export default function HomePage() {
             <span className="badge">On Google Play</span>
             <Image
               src="/brand/logo_wordmark.png"
-              alt={site.name}
+              alt=""
               width={720}
               height={420}
               className={styles.logo}
               priority
             />
+            <h1 className={styles.heroH1}>Jewel block puzzle. Play offline.</h1>
             <p className="lead">
-              A refined jewel block puzzle — clear rows, build combos, and wander a meadow of crystal
-              challenges. Offline-first. Premium feel.
+              Block Meadow is a jewel block puzzle for Android. Place gem blocks on an 8×8 board,
+              clear rows and columns, chain combos, and play offline — free on Google Play.
             </p>
             <div className={styles.actions}>
               <a href={site.playStoreUrl} className="btn btn-primary">
                 Get it on Google Play
               </a>
-              <a href="#modes" className="btn btn-secondary">
-                See how it plays
-              </a>
+              <Link href="/how-to-play" className="btn btn-secondary">
+                How to play
+              </Link>
             </div>
           </div>
         </div>
@@ -163,11 +199,13 @@ export default function HomePage() {
           </div>
           <div className={styles.modeGrid}>
             {modes.map((mode) => (
-              <article key={mode.label} className={styles.modeCard}>
-                <span>{mode.label}</span>
-                <h3>{mode.title}</h3>
-                <p>{mode.body}</p>
-              </article>
+              <Link key={mode.label} href={mode.href} className={styles.modeCard}>
+                <article>
+                  <span>{mode.label}</span>
+                  <h3>{mode.title}</h3>
+                  <p>{mode.body}</p>
+                </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -224,6 +262,19 @@ export default function HomePage() {
               Crystal atmosphere from the Block Meadow world
             </figcaption>
           </figure>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-head">
+            <p className="eyebrow">See the board</p>
+            <h2>Screens from the jewel block puzzle.</h2>
+            <p>Home, Classic play, gem clears, and offline sessions — the same 8×8 grid in every mode.</p>
+          </div>
+          <ScreenshotGrid
+            shots={[screens.home, screens.gameplay, screens.classic, screens.offline]}
+          />
         </div>
       </section>
 
@@ -320,37 +371,13 @@ export default function HomePage() {
               Visit support
             </Link>
           </div>
-          <div className={styles.faqList}>
-            {homeFaqs.map((item) => (
-              <details key={item.q} className={styles.faqItem}>
-                <summary>{item.q}</summary>
-                <p>{item.a}</p>
-              </details>
-            ))}
-          </div>
+          <FaqAccordion items={homeFaqs} />
         </div>
       </section>
 
       <section className="section" id="play">
         <div className="container">
-          <div className={styles.ctaBand}>
-            <div>
-              <p className="eyebrow">Google Play</p>
-              <h2>Play on Android</h2>
-              <p>
-                Download Block Meadow on Google Play. For press, privacy, or account help, email{' '}
-                <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>.
-              </p>
-            </div>
-            <div className={styles.actions}>
-              <a href={site.playStoreUrl} className="btn btn-primary">
-                Open Google Play
-              </a>
-              <Link href="/about" className="btn btn-ghost">
-                About Block Meadow
-              </Link>
-            </div>
-          </div>
+          <PlayCtaBand />
         </div>
       </section>
     </>

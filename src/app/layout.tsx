@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Sora } from 'next/font/google';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
+import { JsonLd } from '@/components/JsonLd';
+import { graphJsonLd, organizationJsonLd, websiteJsonLd } from '@/lib/seo';
 import { site } from '@/lib/site';
 import './globals.css';
 
@@ -12,54 +15,78 @@ const sora = Sora({
   weight: ['400', '500', '600', '700', '800'],
 });
 
+const gsc = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Jewel Block Puzzle`,
+    default: site.homeTitle,
     template: `%s · ${site.name}`,
   },
   description: site.description,
   applicationName: site.name,
   keywords: [
     'block puzzle',
-    'jewel puzzle',
+    'jewel block puzzle',
     'gem blocks',
     'offline puzzle',
     'Block Meadow',
-    'brain game',
+    'block puzzle Android',
     'adventure puzzle',
   ],
   openGraph: {
     type: 'website',
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — Jewel Block Puzzle`,
+    title: site.homeTitle,
     description: site.description,
-    images: [{ url: '/brand/app_icon.png', width: 1024, height: 1024, alt: site.name }],
+    locale: 'en_US',
+    images: [
+      {
+        url: site.ogImage.url,
+        width: site.ogImage.width,
+        height: site.ogImage.height,
+        alt: site.ogImage.alt,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${site.name} — Jewel Block Puzzle`,
+    title: site.homeTitle,
     description: site.description,
-    images: ['/brand/app_icon.png'],
+    images: [site.ogImage.url],
   },
   icons: {
-    icon: '/brand/app_icon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: '16x16', type: 'image/x-icon' },
+      { url: '/brand/app_icon.png', type: 'image/png' },
+    ],
     apple: '/brand/app_icon.png',
   },
   robots: {
     index: true,
     follow: true,
   },
+  ...(gsc ? { verification: { google: gsc } } : {}),
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body className={sora.variable} style={{ fontFamily: 'var(--font-sora), Sora, system-ui, sans-serif' }}>
+        <JsonLd data={graphJsonLd([organizationJsonLd(), websiteJsonLd()])} />
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        {gaId ? (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
+            <Script id="ga4" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}');`}
+            </Script>
+          </>
+        ) : null}
       </body>
     </html>
   );

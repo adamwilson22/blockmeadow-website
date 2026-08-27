@@ -1,23 +1,35 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { JsonLd } from '@/components/JsonLd';
 import { PageHero } from '@/components/PageHero';
+import { breadcrumbJsonLd, graphJsonLd, pageMeta } from '@/lib/seo';
 import { site } from '@/lib/site';
 import styles from '../legal.module.css';
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: 'Privacy Policy',
   description:
     'Block Meadow privacy policy — mixed-audience family game, ads, leaderboards, and optional 13+ social features.',
-};
+  path: '/privacy',
+});
+
+const crumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Privacy', href: '/privacy' },
+];
 
 export default function PrivacyPage() {
   return (
     <>
+      <JsonLd data={graphJsonLd([breadcrumbJsonLd(crumbs)])} />
       <PageHero
         eyebrow="Legal"
         title="Privacy Policy"
         subtitle={`Last updated: ${site.updated}. This policy explains what Block Meadow collects, why, and how families can control it.`}
       />
+      <div className="container" style={{ paddingTop: '0.25rem' }}>
+        <Breadcrumbs items={crumbs} />
+      </div>
       <section className={`section ${styles.section}`}>
         <div className={`container legal-prose ${styles.doc}`}>
           <p>

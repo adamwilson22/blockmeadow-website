@@ -18,7 +18,7 @@
 
 .wrap h1 {
   margin: 0.65rem 0 0.9rem;
-  max-width: 14ch;
+  max-width: min(100%, 22rem);
 }
 
 .wrap .lead {
