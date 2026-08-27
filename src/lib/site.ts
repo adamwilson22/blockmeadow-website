@@ -9,6 +9,7 @@ export const site = {
     'Play Block Meadow, a jewel block puzzle for Android. Clear rows and columns on an 8×8 board, chain combos, climb 1,000 adventure levels, and play offline. Free on Google Play.',
   homeTitle: 'Block Meadow — Offline Jewel Block Puzzle for Android',
   packageId: 'com.playblockmeadow.app',
+  deepLinkScheme: 'blockmeadow',
   playStoreUrl:
     'https://play.google.com/store/apps/details?id=com.playblockmeadow.app',
   /** Google Search Console HTML-tag token (public; also used as DNS TXT value). */

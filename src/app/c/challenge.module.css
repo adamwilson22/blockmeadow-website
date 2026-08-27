@@ -1,0 +1,14 @@
+.score {
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--teal);
+  line-height: 1;
+  margin: 0.2rem 0 0.9rem;
+}
+
+.handle {
+  color: var(--gold);
+  font-weight: 600;
+}
