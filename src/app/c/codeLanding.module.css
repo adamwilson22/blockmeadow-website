@@ -1,0 +1,81 @@
+.stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: calc(100svh - var(--header-h));
+  padding: clamp(1.25rem, 4vw, 2.5rem) 0 clamp(2rem, 5vw, 3.5rem);
+}
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: min(100%, 26rem);
+}
+
+.kicker {
+  margin: 0;
+}
+
+.headline {
+  margin: 0.7rem 0 0.45rem;
+  max-width: 12ch;
+  font-size: clamp(1.85rem, 7.2vw, 3.1rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.lede {
+  margin: 0 0 1.6rem;
+  max-width: 28ch;
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.code {
+  margin: 0;
+  max-width: 100%;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(2.35rem, 11vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  color: var(--teal);
+  text-shadow: 0 0 28px rgba(45, 212, 191, 0.4);
+}
+
+.codeGap {
+  letter-spacing: 0;
+}
+
+.copy {
+  margin-top: 0.75rem;
+  padding: 0.35rem 0.7rem;
+  border: 0;
+  background: none;
+  color: var(--gold);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.copy[data-copied='true'] {
+  color: var(--teal-soft);
+}
+
+.actions {
+  width: 100%;
+  max-width: 22rem;
+}
+
+@media (min-width: 720px) {
+  .headline {
+    max-width: 14ch;
+  }
+}

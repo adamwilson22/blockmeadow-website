@@ -6,6 +6,10 @@
   margin-top: 1.35rem;
 }
 
+.wrap.tight {
+  margin-top: 0.75rem;
+}
+
 .wrap :global(.btn) {
   width: 100%;
   text-decoration: none;
@@ -19,4 +23,16 @@
   color: var(--text);
   background: rgba(15, 23, 36, 0.55);
   border-color: rgba(45, 212, 191, 0.35);
+}
+
+.storeLink {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+
+.storeLink:hover {
+  color: var(--teal-soft);
 }

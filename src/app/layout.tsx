@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Sora } from 'next/font/google';
 import { Footer } from '@/components/Footer';
+import { FooterGate } from '@/components/FooterGate';
 import { Header } from '@/components/Header';
 import { JsonLd } from '@/components/JsonLd';
 import { graphJsonLd, organizationJsonLd, websiteJsonLd } from '@/lib/seo';
@@ -78,7 +79,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <JsonLd data={graphJsonLd([organizationJsonLd(), websiteJsonLd()])} />
         <Header />
         <main id="main">{children}</main>
-        <Footer />
+        <FooterGate>
+          <Footer />
+        </FooterGate>
         {gaId ? (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />

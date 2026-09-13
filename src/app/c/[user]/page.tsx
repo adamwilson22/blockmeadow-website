@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { CopyCodeButton } from '@/components/CopyCodeButton';
 import { OpenAppGate } from '@/components/OpenAppGate';
 import { isSixDigitCode } from '@/lib/sixDigit';
-import { screens, site } from '@/lib/site';
-import styles from '../challenge.module.css';
+import { site } from '@/lib/site';
+import styles from '../codeLanding.module.css';
 
 type Params = { user: string };
 
@@ -22,8 +21,8 @@ export async function generateMetadata({
     };
   }
   return {
-    title: { absolute: `Challenge ${user} · ${site.name}` },
-    description: `Open Block Meadow and enter challenge code ${user} to play this board.`,
+    title: { absolute: `You've been challenged · ${user}` },
+    description: `A friend left you a Block Meadow board. Open the app with code ${user} and try to beat their Classic score.`,
     robots: { index: false, follow: false },
   };
 }
@@ -38,47 +37,20 @@ export default async function ChallengeCodePage({
 
   return (
     <section className={styles.stage}>
-      <div className={`container ${styles.inner}`}>
-        <p className="eyebrow">Score challenge</p>
-        <h1 className={styles.headline}>Your challenge code</h1>
-        <p className={styles.lede}>
-          Open Block Meadow if the app is installed, or copy the code and
-          paste it on Home.
-        </p>
+      <div className={`container ${styles.shell}`}>
+        <p className={`eyebrow ${styles.kicker}`}>Challenge · 96h</p>
+        <h1 className={styles.headline}>You&apos;ve been challenged.</h1>
+        <p className={styles.lede}>Same Classic board. Beat their score.</p>
 
-        <article className={styles.card}>
-          <Image
-            src={screens.classic.src}
-            alt=""
-            fill
-            priority
-            sizes="380px"
-            className={styles.cardBg}
-          />
-          <div className={styles.cardShade} aria-hidden />
-          <div className={styles.cardInner}>
-            <div className={styles.brand}>
-              <Image
-                src="/brand/app_icon.png"
-                alt=""
-                width={28}
-                height={28}
-                className={styles.brandIcon}
-              />
-              {site.name}
-            </div>
-            <p className={styles.mode}>Challenge code</p>
-            <p className={styles.score}>{user}</p>
-            <p className={styles.taunt}>
-              Codes last 96 hours. Copy and paste on Home if the app does not
-              open.
-            </p>
-            <div className={styles.copyRow}>
-              <CopyCodeButton code={user} />
-            </div>
-            <OpenAppGate kind="code" code={user} />
-          </div>
-        </article>
+        <p className={styles.code} aria-label={`Challenge code ${user}`}>
+          {user.slice(0, 3)}
+          <span className={styles.codeGap} aria-hidden>
+            {' '}
+          </span>
+          {user.slice(3)}
+        </p>
+        <CopyCodeButton code={user} variant="text" className={styles.copy} />
+        <OpenAppGate kind="code" code={user} compact className={styles.actions} />
       </div>
     </section>
   );

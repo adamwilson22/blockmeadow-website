@@ -20,7 +20,10 @@ type CodeProps = {
   code: string;
 };
 
-type Props = ChallengeProps | InviteProps | CodeProps;
+type Props = (ChallengeProps | InviteProps | CodeProps) & {
+  className?: string;
+  compact?: boolean;
+};
 
 function customUri(props: Props): string {
   if (props.kind === 'challenge') {
@@ -61,16 +64,34 @@ export function OpenAppGate(props: Props) {
   }, [intent, props.kind]);
 
   const label =
-    props.kind === 'invite' ? 'Open invite in the app' : 'Open in Block Meadow';
+    props.kind === 'invite'
+      ? 'Open invite in the app'
+      : props.kind === 'code'
+        ? 'Play this board'
+        : 'Open in Block Meadow';
 
   return (
-    <div className={styles.wrap}>
+    <div
+      className={[
+        styles.wrap,
+        props.kind === 'code' || props.compact ? styles.tight : '',
+        props.className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
       <a className="btn btn-primary" href={openHref}>
         {label}
       </a>
-      <a className="btn btn-ghost" href={site.playStoreUrl}>
-        Get it on Google Play
-      </a>
+      {props.compact ? (
+        <a className={styles.storeLink} href={site.playStoreUrl}>
+          Need the app? Google Play
+        </a>
+      ) : (
+        <a className="btn btn-ghost" href={site.playStoreUrl}>
+          Get it on Google Play
+        </a>
+      )}
     </div>
   );
 }

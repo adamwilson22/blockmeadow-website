@@ -2,13 +2,25 @@
 
 import { useState } from 'react';
 
-export function CopyCodeButton({ code }: { code: string }) {
+export function CopyCodeButton({
+  code,
+  className,
+  variant = 'button',
+}: {
+  code: string;
+  className?: string;
+  variant?: 'button' | 'text';
+}) {
   const [copied, setCopied] = useState(false);
+  const isText = variant === 'text';
 
   return (
     <button
       type="button"
-      className="btn btn-ghost"
+      className={[isText ? undefined : 'btn btn-ghost', className]
+        .filter(Boolean)
+        .join(' ')}
+      data-copied={copied ? 'true' : 'false'}
       onClick={async () => {
         try {
           await navigator.clipboard.writeText(code);
