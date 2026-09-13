@@ -30,6 +30,10 @@ This folder is gitignored from the Flutter app repo. Deploy it separately (Verce
 | `/features` `/about` `/support` | Product |
 | `/privacy` `/terms` `/delete-account` | Legal |
 | `/app-ads.txt` | AdMob authorized sellers |
+| `/c/:code` | 6-digit challenge landing (`100000`–`999999`) |
+| `/c/:user/:score` | Legacy name/score challenge |
+| `/i/:user` | Friend invite |
+| `/.well-known/assetlinks.json` | Android App Links (upload-key SHA-256). Add the Play App Signing SHA from Play Console if Play re-signs the APK. |
 
 ## Local
 

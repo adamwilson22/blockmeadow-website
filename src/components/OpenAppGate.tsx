@@ -15,16 +15,28 @@ type InviteProps = {
   user: string;
 };
 
-type Props = ChallengeProps | InviteProps;
+type CodeProps = {
+  kind: 'code';
+  code: string;
+};
+
+type Props = ChallengeProps | InviteProps | CodeProps;
 
 function customUri(props: Props): string {
   if (props.kind === 'challenge') {
     return `${site.deepLinkScheme}://c/${encodeURIComponent(props.user)}/${props.score}`;
   }
+  if (props.kind === 'code') {
+    return `${site.deepLinkScheme}://c/${props.code}`;
+  }
   return `${site.deepLinkScheme}://i/${encodeURIComponent(props.user)}`;
 }
 
 function intentUri(props: Props): string {
+  if (props.kind === 'code') {
+    // Stay on this page if the app is missing — digits + copy must remain visible.
+    return `intent://c/${props.code}#Intent;scheme=${site.deepLinkScheme};package=${site.packageId};end`;
+  }
   const path =
     props.kind === 'challenge'
       ? `c/${encodeURIComponent(props.user)}/${props.score}`
@@ -42,10 +54,14 @@ export function OpenAppGate(props: Props) {
     const ua = navigator.userAgent || '';
     if (!/Android/i.test(ua)) return;
     setOpenHref(intent);
+    // 6-digit codes stay in the browser unless the user taps Open — Play Store
+    // is not the happy path while testers still sideload.
+    if (props.kind === 'code') return;
     window.location.href = intent;
-  }, [intent]);
+  }, [intent, props.kind]);
 
-  const label = props.kind === 'challenge' ? 'Open in Block Meadow' : 'Open invite in the app';
+  const label =
+    props.kind === 'invite' ? 'Open invite in the app' : 'Open in Block Meadow';
 
   return (
     <div className={styles.wrap}>

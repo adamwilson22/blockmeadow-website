@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.playblockmeadow.app",
+      "sha256_cert_fingerprints": [
+        "F4:F0:01:26:33:A6:7D:CD:F8:67:6B:8E:9B:29:4C:AB:1B:DC:9E:38:48:BC:B7:76:5A:9D:08:78:BA:1D:5A:78"
+      ]
+    }
+  }
+]
