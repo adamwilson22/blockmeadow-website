@@ -19,14 +19,22 @@
 }
 
 .headline {
-  margin: 0.7rem 0 0.45rem;
-  max-width: 12ch;
-  font-size: clamp(1.85rem, 7.2vw, 3.1rem);
+  margin: 0.7rem 0 0.4rem;
+  max-width: 16ch;
+  font-size: clamp(1.75rem, 6.6vw, 3rem);
   font-weight: 800;
   letter-spacing: -0.04em;
-  line-height: 1.02;
+  line-height: 1.05;
   color: var(--text);
   text-wrap: balance;
+}
+
+.handle {
+  margin: 0 0 0.45rem;
+  color: var(--teal-soft);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 .lede {
@@ -76,6 +84,6 @@
 
 @media (min-width: 720px) {
   .headline {
-    max-width: 14ch;
+    max-width: 18ch;
   }
 }

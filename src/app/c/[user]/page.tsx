@@ -2,6 +2,11 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { CopyCodeButton } from '@/components/CopyCodeButton';
 import { OpenAppGate } from '@/components/OpenAppGate';
+import {
+  handleFor,
+  headlineFor,
+  peekChallenge,
+} from '@/lib/challengePeek';
 import { isSixDigitCode } from '@/lib/sixDigit';
 import { site } from '@/lib/site';
 import styles from '../codeLanding.module.css';
@@ -20,9 +25,15 @@ export async function generateMetadata({
       robots: { index: false, follow: false },
     };
   }
+  const peek = await peekChallenge(user);
+  const title = headlineFor(peek);
+  const handle = handleFor(peek);
+  const description = handle
+    ? `${handle} left you a Block Meadow board. Open the app with code ${user}.`
+    : `A friend left you a Block Meadow board. Open the app with code ${user}.`;
   return {
-    title: { absolute: `You've been challenged · ${user}` },
-    description: `A friend left you a Block Meadow board. Open the app with code ${user} and try to beat their Classic score.`,
+    title: { absolute: `${title} · ${site.name}` },
+    description,
     robots: { index: false, follow: false },
   };
 }
@@ -35,12 +46,26 @@ export default async function ChallengeCodePage({
   const { user } = await params;
   if (!isSixDigitCode(user)) notFound();
 
+  const peek = await peekChallenge(user);
+  const handle = handleFor(peek);
+  const score = peek && !peek.expired ? peek.targetScore : 0;
+  const modeLabel = peek?.mode === 'blitz' ? 'Blitz' : 'Classic';
+
   return (
     <section className={styles.stage}>
       <div className={`container ${styles.shell}`}>
-        <p className={`eyebrow ${styles.kicker}`}>Challenge · 96h</p>
-        <h1 className={styles.headline}>You&apos;ve been challenged.</h1>
-        <p className={styles.lede}>Same Classic board. Beat their score.</p>
+        <p className={`eyebrow ${styles.kicker}`}>
+          {peek?.expired ? 'Challenge expired' : 'Challenge · 96h'}
+        </p>
+        <h1 className={styles.headline}>{headlineFor(peek)}</h1>
+        {handle ? <p className={styles.handle}>{handle}</p> : null}
+        <p className={styles.lede}>
+          {peek?.expired
+            ? 'Ask them to share a new code.'
+            : score > 0
+              ? `${modeLabel} · ${score.toLocaleString('en-US')} to beat`
+              : 'Same Classic board. Beat their score.'}
+        </p>
 
         <p className={styles.code} aria-label={`Challenge code ${user}`}>
           {user.slice(0, 3)}
