@@ -1,13 +1,13 @@
 google.com, pub-4696104437367362, DIRECT, f08c47fec0942fa0
 # Adagio
 adagio.io, 1989, DIRECT
-adagio.io, 1989-08, RESELLER
+adagio.io, 1989-OB, RESELLER
 
 # Adagio - Magnite
 rubiconproject.com, 19116, RESELLER, 0bfd66d529a55807
 
 # Adagio - Pubmatic
-pubmatic.com, 159118, RESELLER, 5d62483b186f2ace
+pubmatic.com, 159110, RESELLER, 5d62403b186f2ace
 
 # Adagio - Improve Digital
 improvedigital.com, 1790, RESELLER
